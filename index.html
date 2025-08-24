@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories Together 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts"></div>
+    <div class="rose-petals"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Our Memories Together 💖</h1>
+            <nav class="nav">
+                <button class="nav__toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav__menu" id="navMenu">
+                    <li><a href="#home" class="nav__link">Home</a></li>
+                    <li><a href="#gallery" class="nav__link">Gallery</a></li>
+                    <li><a href="#messages" class="nav__link">Messages</a></li>
+                    <li><a href="#timeline" class="nav__link">Timeline</a></li>
+                    <li><a href="#friends" class="nav__link">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero__background">
+            <div class="heart-shapes"></div>
+        </div>
+        <div class="container">
+            <div class="hero__content">
+                <h2 class="hero__tagline">Friendship isn't one big thing… it's a million little moments.</h2>
+                <button class="btn btn--hero" onclick="document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' })">
+                    <span class="heart-icon">💖</span>
+                    Scroll to Remember
+                </button>
+            </div>
+            <div class="scroll-indicator">
+                <div class="heart-scroll">💕</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Journey Through Time ✨</h2>
+                <div class="heart-border"></div>
+            </div>
+            <div class="timeline" id="timeline-container">
+                <!-- Timeline items will be dynamically inserted here -->
+            </div>
+            <button class="btn btn--primary timeline-add-btn" id="addTimelineBtn">
+                💖 Add New Memory
+            </button>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Captured Moments 📸</h2>
+                <div class="rose-border"></div>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be dynamically inserted here -->
+            </div>
+            <button class="btn btn--secondary gallery-add-btn" id="addGalleryBtn">
+                🌹 Add Photo
+            </button>
+        </div>
+    </section>
+
+    <!-- Friend Quotes Section -->
+    <section id="friends" class="friends-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Makes Us Special 💕</h2>
+                <div class="heart-border"></div>
+            </div>
+            <div class="friends-grid" id="friendsGrid">
+                <!-- Friend cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Wall Section -->
+    <section id="messages" class="messages-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Love Notes From Friends 💌</h2>
+                <div class="rose-border"></div>
+            </div>
+            <div class="message-form-container">
+                <form class="message-form" id="messageForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="messageName" placeholder="Your name..." required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="messageText" placeholder="Share your heart..." rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--message">
+                        💕 Send Love Note
+                    </button>
+                </form>
+            </div>
+            <div class="messages-container" id="messagesContainer">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="closing-section">
+        <div class="container">
+            <div class="closing-content">
+                <h2 class="closing-message">
+                    Here's to all the laughter, tears, adventures, and memories that make us more than friends — family 💕
+                </h2>
+                <button class="btn btn--closing" id="addStoryBtn">
+                    ✨ Add Your Heart to Our Story
+                </button>
+            </div>
+            <div class="heart-burst" id="heartBurst"></div>
+        </div>
+    </section>
+
+    <!-- Add Memory Modal -->
+    <div class="modal hidden" id="addMemoryModal">
+        <div class="modal__backdrop" onclick="closeModal('addMemoryModal')"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="modal__title">💖 Add New Memory</h3>
+                <button class="modal__close" onclick="closeModal('addMemoryModal')">&times;</button>
+            </div>
+            <form class="modal__body" id="memoryForm">
+                <div class="form-group">
+                    <label class="form-label">Year</label>
+                    <input type="number" class="form-control" id="memoryYear" min="2020" max="2030" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" id="memoryTitle" placeholder="Memory title..." required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" id="memoryDescription" placeholder="Tell us about this beautiful moment..." rows="4" required></textarea>
+                </div>
+                <div class="modal__actions">
+                    <button type="button" class="btn btn--outline" onclick="closeModal('addMemoryModal')">Cancel</button>
+                    <button type="submit" class="btn btn--primary">💖 Add Memory</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Photo Modal -->
+    <div class="modal hidden" id="addPhotoModal">
+        <div class="modal__backdrop" onclick="closeModal('addPhotoModal')"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="modal__title">🌹 Add Photo</h3>
+                <button class="modal__close" onclick="closeModal('addPhotoModal')">&times;</button>
+            </div>
+            <form class="modal__body" id="photoForm">
+                <div class="form-group">
+                    <label class="form-label">Photo URL</label>
+                    <input type="url" class="form-control" id="photoUrl" placeholder="https://example.com/photo.jpg" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Caption</label>
+                    <input type="text" class="form-control" id="photoCaption" placeholder="Caption with heart..." required>
+                </div>
+                <div class="modal__actions">
+                    <button type="button" class="btn btn--outline" onclick="closeModal('addPhotoModal')">Cancel</button>
+                    <button type="submit" class="btn btn--secondary">🌹 Add Photo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery Lightbox -->
+    <div class="lightbox hidden" id="lightbox">
+        <div class="lightbox__backdrop" onclick="closeLightbox()"></div>
+        <div class="lightbox__content">
+            <button class="lightbox__close" onclick="closeLightbox()">
+                <span class="heart-close">💖</span>
+            </button>
+            <img id="lightboxImage" src="" alt="">
+            <p class="lightbox__caption" id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <!-- Heart Cursor -->
+    <div class="heart-cursor" id="heartCursor">💖</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
